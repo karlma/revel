@@ -39,7 +39,7 @@ title: The Revel Web Framework for Go
         <div class="span4">
           <h2>热代码加载</h2>
           <p>
-            编辑，保存，刷新。  Revel为你编译代码和模板，所以你就不会总是落半拍啦。
+            编辑，保存，刷新。  Revel为你编译代码和模板，所以你就不会断片啦。
             什么？代码不能编译？ 它会给你一个有帮助的
             <a href="img/CompilationError.png">描述</a>。
             什么？运行时panic？  Revel 能让你<a href="img/Panic.png">恢复的</a>。
@@ -84,18 +84,15 @@ title: The Revel Web Framework for Go
         <div class="span4">
           <h2>无状态</h2>
           <p>
-            Revel provides primitives that keep the web tier stateless for
-            predictable scaling. For example, session data is stored in the user
-            cookie, and the cache is backed by a memcached cluster.
+            为了可预知的扩展性，Revel提供保持web层无状态的原语
+            例如，session数据通过cookie方式保存在用户端，而cache则是用后端的内存缓存群集来实现。
           </p>
         </div>
         <div class="span4">
-          <h2>Modular</h2>
+          <h2>模块化</h2>
           <p>
-            Revel is built around composable middleware called <b>filters</b>,
-            which implement nearly all request-processing
-            functionality. Developers have the freedom to replace the default
-            filters with custom implementations (e.g. a custom router).
+            Revel通过叫做<b>filter</b>的可组装的中间来建造。这些filter执行几乎所以的请求处理功能。
+            开发者可以自由的用自己定制的filter实现替换默认的实现（如：实现一个定制的路由）。
           </p>
         </div>
       </div>
