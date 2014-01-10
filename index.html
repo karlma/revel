@@ -33,11 +33,11 @@ title: The Revel Web Framework for Go
 
     <div class="container">
       <div class="page-header">
-        <h1>Features</h1>
+        <h1>特性</h1>
       </div>
       <div class="row">
         <div class="span4">
-          <h2>Hot Code Reload</h2>
+          <h2>热代码加载</h2>
           <p>
             编辑，保存，刷新。  Revel为你编译代码和模板，所以你就不会总是落半拍啦。
             什么？代码不能编译？ 它会给你一个有帮助的
@@ -46,7 +46,7 @@ title: The Revel Web Framework for Go
           </p>
         </div>
         <div class="span4">
-          <h2>Comprehensive</h2>
+          <h2>全面的功能</h2>
           <p>
             Revel 所提供的
             <a href="manual/routing.html">路由</a>,
@@ -57,34 +57,32 @@ title: The Revel Web Framework for Go
             <a href="manual/cache.html">缓存</a>,
             <a href="manual/jobs.html">job running</a>,
             <a href="manual/testing.html">测试框架</a>,
-            and even <a href="manual/i18n-messages.html">国际化</a>.
+            甚至还有<a href="manual/i18n-messages.html">国际化</a>.
           </p>
         </div>
         <div class="span4">
           <h2>高性能</h2>
           <p>
-            Revel builds on top of the Go HTTP server, which was
-            <a href="http://www.techempower.com/benchmarks/#section=data-r5">recently
-            benchmarked</a> to serve <b>three to ten times</b> as many requests
-            as Rails across a variety of loads.
+            Revel建构在Go HTTP server之上, 这个东西<a href="http://www.techempower.com/benchmarks/#section=data-r5">
+            最近的在基准服务</a>的各种负载测试中处理的请求数是Rails的<b>3到10倍</b>。
           </p>
         </div>
       </div>
       <div class="page-header">
-        <h1>Framework Design</h1>
+        <h1>框架设计</h1>
       </div>
       <div class="row">
         <div class="span4">
-          <h2>Synchronous</h2>
+          <h2>同步</h2>
           <p>
-            The <a href="http://golang.org/pkg/net/http/">Go HTTP server</a>
-            runs each request in its own
-            <a href="http://golang.org/doc/effective_go.html#goroutines">goroutine</a>.
-            Write simple callback-free code without guilt.
+            <a href="http://golang.org/pkg/net/http/">Go HTTP server</a>
+            第一个请求都使用自己的
+            <a href="http://golang.org/doc/effective_go.html#goroutines">goroutine</a>。
+            写一个简单的callback-free代码一点都不感到内疚。
           </p>
         </div>
         <div class="span4">
-          <h2>Stateless</h2>
+          <h2>无状态</h2>
           <p>
             Revel provides primitives that keep the web tier stateless for
             predictable scaling. For example, session data is stored in the user
