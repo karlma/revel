@@ -206,7 +206,7 @@ GET    /hotels/:id           Hotels.Show             <b># 提取一个嵌入的�
 WS     /hotels/:id/feed      Hotels.Feed             <b># WebSockets.</b>
 POST   /hotels/:id/:action   Hotels.:action          <b># 自己路由到action.</b>
 GET    /public/*filepath     Static.Serve("public")  <b># 从/public/里取出静态资源...</b>
-*      /:controller/:action  :controller.:action     <b># 所以其他情况; 自动生成 URL</b></pre>
+*      /:controller/:action  :controller.:action     <b># 其他情况; 自动生成 URL</b></pre>
 
           </div>
           <div class="span6">
@@ -232,24 +232,19 @@ func (c Hotels) Save(hotel Hotel) revel.Result {
 
         <div class="row">
           <div class="span6">
-            <h2 id="controllers">Controllers</h2>
+            <h2 id="controllers">控制器</h2>
             <p>
-              All Actions are methods on a Controller.  This teaser shows a couple cool things:
+              所有Action都是控制器(Controller)的一个方法。这一做法同时带来了数个很酷的事：
               <ul>
-                <li> <b>Data binding.</b>  Revel binds simple values and structs from
-                  the URL or form and passes them as parameters to your method.
-                  (If you prefer to access them directly from a parameter map, that's ok too!)
-                <li> <b>Validation.</b> Helpers to manage validation errors.
-                <li> <b>Flash.</b> The flash is a cookie that lives for one
-                  request (errors, success messages, etc).
-                <li> <b>Session.</b> The session is a cryptographically signed
-                  cookie, exposed as a <code>map[string]string</code>.
-                <li> <b>Results.</b> Redirections take advantage of reverse
-                  routing.  Template rendering makes your data available using the
-                  name of the local variable!
+                <li> <b>数据绑定(Data binding).</b>  Revel从URL或表单里绑定简单值或结构，并把它们以参数的方式传递到你的方法中。
+                  (如果你喜欢从参数map中直接读取它们，可能也没有问题!)
+                <li> <b>验证(Validation).</b> Helpers管理验证错误。
+                <li> <b>Flash.</b> Flash是一个只在一次请求中使用的cookie(错误，成功消息等).
+                <li> <b>Session.</b> Session是一个加密的签名cookie，以<code>map[string]string</code>的形式存在。
+                <li> <b>结果(Results).</b> 重定向利用了反向路由。在模块渲染时，你的数据可以通过本地变量访问。
               </ul>
 
-              Here's an example:
+              这有一个例子：
             </p>
           </div>
 
@@ -295,23 +290,19 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
 
         <div class="row">
           <div class="span6">
-            <h2 id="templates">Templates</h2>
+            <h2 id="templates">模板</h2>
             <p>
-              By convention, Revel manages to integrate
-              <a href="http://golang.org/pkg/text/template/">Go Templates</a>
-              easily into the rest of the web app. Here is part of the template
-              rendered in the <b>Register</b> action shown above.
+              按照惯例，Revel在web app的其余部分很容易的整合了<a href="http://golang.org/pkg/text/template/">Go Templates</a>
+              这里就是上述<b>Register</b> action所渲染的模板的部分代码。
             </p>
-            Note that:
+            注意：
             <ul>
-              <li> Revel found it automatically using the name of the action.
-              <li> <b>field</b> is a simple helper function that returns a map
-                of validation errors and parameter values for the named field.
-                The app may inject any helper funcs that it wants.
-              <li> The <b>title</b> variable is available in the template as if
-                it had been explicitly put in the RenderArgs.  (It's used in
+              <li> Revel通过action的名字自动找到模板。
+              <li> <b>field</b> 是一个简单的helper功能，它返回一个与字段名对应的验证错误和参数值的map。
+                App可以根据需要注入任务helper功能。
+              <li>变量<b>title</b>是模板中是可见的，即使它是被显式的放在RenderAgrs中的。 (它在这个例子的
                 <a href="http://github.com/robfig/revel/samples/booking/app/views/header.html">
-                  header.html</a> in this case)
+                  header.html</a> 中用到)
             </ul>
           </div>
 
@@ -344,7 +335,7 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
 
         <div class="row">
           <div class="span6">
-            <h2 id="interceptors">Interceptors</h2>
+            <h2 id="interceptors">拦截器</h2>
             <p>
               Interceptors are controller methods that are run before or after
               requests, or in response to panics.  By embedding a controller
