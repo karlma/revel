@@ -1,39 +1,37 @@
 ---
-title: The "Hello World" app
+title: "Hello World" 应用
 layout: tutorial
 ---
 
-This article runs through the quick exercise of implementing the "Hello World"
-application from
+此文做一个快速的练习，实现一个在如同
 [the Play! example](http://www.playframework.org/documentation/1.2.4/firstapp).
+一样的 "Hello World" 应用
 
-Let's start with the **myapp** project that [we created previously](createapp.html).
+让我们从我们 [前面创建的](createapp.html) 的那个 **myapp** 项目开始吧。
 
-Edit the **app/views/App/Index.html** template to add this form, under the
-included `flash.html` template:
+编辑 **app/views/App/Index.html** 模板，在包含 `flash.html` 处的正文，增加这个表单：
 
 	<form action="/App/Hello" method="GET">
 	    <input type="text" name="myName" /><br/>
 	    <input type="submit" value="Say hello!" />
 	</form>
 
-Refresh the page to see our work.
+刷新页面看一下我们的成果。
 
 ![The Say Hello form](../img/AlohaForm.png)
 
-Let's try submitting that form.
+我们来提交一下。
 
 ![Route not found](../img/HelloRouteNotFound.png)
 
-That makes sense.  Add the action to **app/controllers/app.go**:
+可以理解。 在 **app/controllers/app.go** 里增加一个 action:
 
 	func (c App) Hello(myName string) revel.Result {
 		return c.Render(myName)
 	}
 
 
-Next, we have to create the view.  Create a file
-**app/views/App/Hello.html**, with this content:
+然后，我们还得创建一个view。创建文件 **app/views/App/Hello.html**, 其内容如下：
 
 {% raw %}
 	{{set . "title" "Home"}}
@@ -45,15 +43,14 @@ Next, we have to create the view.  Create a file
 	{{template "footer.html" .}}
 {% endraw %}
 
-Refresh the page, and you should see a greeting:
+刷新页面，你应该可以看到：
 
 ![Hello Robfig](../img/HelloRobfig.png)
 
-Lastly, let's add some validation.  The name should be required, and at least
-three characters.
+最后，我们再来增加一些验证。名字是必须要有的，而且不能少于3个字符。
 
-To do this, let's use the [validation module](../manual/validation.html).  Edit
-your action in **app/controllers/app.go**:
+为了达到目标，我们要用到 [验证模块](../manual/validation.html)。
+编辑你的action，在 **app/controllers/app.go**文件里:
 
 	func (c App) Hello(myName string) revel.Result {
 		c.Validation.Required(myName).Message("Your name is required!")
@@ -68,11 +65,10 @@ your action in **app/controllers/app.go**:
 		return c.Render(myName)
 	}
 
-Now it will send the user back to `Index()` if they have not entered a valid
-name. Their name and the validation error are kept in the
-[Flash](../manual/sessionflash.html), which is a temporary cookie.
+现在，如果没有输入有效的名字的话，它会将用户返回到 `Index()`。
+名字和验证错误保存在[Flash](../manual/sessionflash.html)里，它是一个临时cookie。
 
-The provided `flash.html` template will show any errors or flash messages:
+在 `flash.html` 模板中将会显示所有的错误和flash消息：
 
 {% raw %}
 	{{if .flash.success}}
@@ -97,8 +93,8 @@ The provided `flash.html` template will show any errors or flash messages:
 	{{end}}
 {% endraw %}
 
-Now when we submit a single letter as our name:
+现在，当我们提交一个字母的名字时，会看到如下的页面：
 
 ![Example error](../img/HelloNameNotLongEnough.png)
 
-Success, we got an appropriate error and our input was saved for us to edit.
+成功啦，我们得到了一个恰当的错误提示，我们的输入也会保存下来，等我们修改。
