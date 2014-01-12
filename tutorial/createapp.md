@@ -1,10 +1,9 @@
 ---
-title: Creating a new Revel application
+title: 创建新的 Revel 应用
 layout: tutorial
 ---
 
-Use the Revel command line tool to create an empty project in your GOPATH and
-run it:
+在你的GOPATH目录下，用 Revel 命令行工具创建一个空项目，然后运行它：
 
 	$ cd $GOPATH
 
@@ -25,12 +24,10 @@ run it:
 	2012/09/27 17:01:54 run.go:41: Running myapp (myapp) in dev mode
 	2012/09/27 17:01:54 harness.go:112: Listening on :9000
 
-Open your browser to http://localhost:9000/ to see a notification that your app
-is ready.
+在你的浏览器中打开 http://localhost:9000/ ，你会看到，你的app已经准备好啦。
 
 ![Your Application Is Ready](../img/YourApplicationIsReady.png)
 
-The generated project structure is described
-[here](../manual/organization.html).
+产生的项目结构在[这里](../manual/organization.html).
 
-**Next: [Learn how Revel handles requests.](requestflow.html)**
+**Next: [学习 Revel 如何处理请求.](requestflow.html)**
