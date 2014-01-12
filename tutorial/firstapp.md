@@ -1,5 +1,5 @@
 ---
-title: "Hello World" 应用
+title: "Hello World"
 layout: tutorial
 ---
 
