@@ -92,8 +92,8 @@ title: The Revel Web Framework for Go
         <div class="span4">
           <h2>模块化</h2>
           <p>
-            Revel通过叫做<b>filter</b>的可组装的中间来建造。这些filter执行几乎所以的请求处理功能。
-            开发者可以自由的用自己定制的filter实现替换默认的实现（如：实现一个定制的路由）。
+            Revel通过<b>filter</b>处理几乎所有的服务请求。filter是一组中间件。
+            开发者可以自由的定制的自己的filter来替换默认的filter（如：实现一个定制的路由filter）。
           </p>
         </div>
       </div>
@@ -101,7 +101,7 @@ title: The Revel Web Framework for Go
       </div>
       <section id="quickstart">
         <div class="page-header">
-          <h1>Quick Start</h1>
+          <h1>快速入门</h1>
         </div>
         <div class="row">
           <div class="span6">
@@ -160,7 +160,7 @@ title: The Revel Web Framework for Go
           <h1>预览</h1>
         </div>
         <p>
-          这一节让你尝尝框架的各部分是什么味道：
+          这一节先让你尝尝Revel框架各部分的味道：
         </p>
 
         <dl class="dl-horizontal">
@@ -189,31 +189,29 @@ title: The Revel Web Framework for Go
 
         <div class="row">
           <div class="span6">
-            <h2 id="routing">Routing</h2>
+            <h2 id="routing">路由</h2>
             <p>
-              Revel uses a declarative routing syntax. It collects all routes
-              for an app in a single file, with a simple syntax for matching
-              requests, extracting arguments from URIs, and specifying
-              route-specific arguments to the action. Here's a commented
-              sample...
+              Revel使用声明式路由语法。它通过一个单一的文件中集中了所有的一个应用的所有路由，
+              通过一个简单的语法来匹配请求，提取URI中的参数，并为action指定特定路由的参数。
+              下面是一个例子...
             </p>
           </div>
           <div class="span12">
             <pre>
 # conf/routes
-# This file defines all application routes (Higher priority routes first)
-GET    /login                Application.Login       <b># A simple path</b>
-GET    /hotels/              Hotels.Index            <b># Matches with or without trailing slash</b>
-GET    /hotels/:id           Hotels.Show             <b># Extract an embedded argument</b>
+# 这个文件定义了所以应用的路由（按优先级从高到低的顺序排列）
+GET    /login                Application.Login       <b># 一个简单路径</b>
+GET    /hotels/              Hotels.Index            <b># 匹配尾部带斜杠和不带斜杠的情况</b>
+GET    /hotels/:id           Hotels.Show             <b># 提取一个嵌入的参数</b>
 WS     /hotels/:id/feed      Hotels.Feed             <b># WebSockets.</b>
-POST   /hotels/:id/:action   Hotels.:action          <b># Automatically route some actions.</b>
-GET    /public/*filepath     Static.Serve("public")  <b># Assets served from /public/...</b>
-*      /:controller/:action  :controller.:action     <b># Catch all; Automatic URL generation</b></pre>
+POST   /hotels/:id/:action   Hotels.:action          <b># 自己路由到action.</b>
+GET    /public/*filepath     Static.Serve("public")  <b># 从/public/里取出静态资源...</b>
+*      /:controller/:action  :controller.:action     <b># 所以其他情况; 自动生成 URL</b></pre>
 
           </div>
           <div class="span6">
 						<p>
-							Reverse routes can be generated in a type-safe manner.  For example:
+							以类型安全的方式产生反向路由.  例如:
 						</p>
           </div>
           <div class="span12">
