@@ -1,14 +1,13 @@
 ---
-title: Introduction
+title: 介绍
 layout: tutorial
 ---
 
-This tutorial walks through getting started with a very simple Revel app.
+这个教程用一个非常简单的Revel app做为入门指南。
 
-* [Getting started](gettingstarted.html) - How to get Revel up and running.
-* [Creating a new Revel app](createapp.html) - How to create a skeleton Revel project.
-* [The request flow](requestflow.html) - Trace the different steps in handling a request.
-* [Implementing the Hello World app](firstapp.html) - Implementing a toy application in Revel.
+* [入门指南](gettingstarted.html) - 如何让Revel运行起来。
+* [创建新的Revel app](createapp.html) - 如何创建Revel项目的骨架。
+* [请求流程](requestflow.html) - 追踪处理一个请求的不同的路径。
+* [实现Hello World app](firstapp.html) - 在Revel中实现一个玩具级的应用。
 
-Command line interactions are shown for the OSX / Linux environment but should
-directly translate into Windows.
+文档中的命令行交互是OSX/Linux的，但是应该可以直接在Windows下使用。
