@@ -420,16 +420,14 @@ select id, hotel_id, user_id, price, nights
 
         <div class="row">
           <div class="span6">
-            <h2 id="filters">Filters</h2>
+            <h2 id="filters">过滤器</h2>
             <p>
-              Filters are the middleware of the application.  They are simply
-              funcs with a specific signature:
+              过滤器是应用中间件。它们是一些规定格式的简单func。
             </p>
             <pre class="prettyprint">
 type Filter func(c *Controller, filterChain []Filter)</pre>
             <p>
-              Even complicated "built-in" functionality like the interceptor
-              framework is implemented as a filter:
+              基至复杂的 "built-in" 功能，像拦截器框架也是用过滤器实现的。
             </p>
           </div>
 
@@ -456,9 +454,8 @@ var InterceptorFilter = func(c *Controller, fc []Filter) {
 	invokeInterceptors(AFTER, c)
 }</pre>
 						<p>
-							Revel provides a default stack of Filters which the developer can
-							override.  This makes it easy for the developer to select exactly
-							the parts of the framework that they want to use.
+                                                  Revel提供了一个默认的过滤器栈，开发者可以覆盖它。
+                                                  这样的方式可以让开发者很容易的精确的选择他们想用的框架的某些部分。
 						</p>
 
             <pre class="prettyprint">
@@ -481,14 +478,13 @@ var Filters = []Filter{
 						</pre>
 
 						<p>
-							Nearly all framework functionality is implemented in the filters,
-							and the filter stack is directly exposed to the developer as part
-							of the configuration.  This makes Revel understandable and modular.
+                                                  几乎所有的框架功能都是用过滤器实现的，而且过滤器做了配置的一部分直接暴露给开发者。
+                                                  这使得Revel更容易理解，和更加模块化。
 						</p>
 						<p>
-							As proof of modularity, look how simple
+							做为Revel模块化的证据，看一下
 							the <a href="https://github.com/robfig/revel/blob/master/server.go">
-								main server handler</a> is:
+								主服务处理器</a> 是多么的简单:
 						</p>
             <pre class="prettyprint">
 // github.com/robfig/revel/server.go
@@ -512,14 +508,14 @@ func handleInternal(w http.ResponseWriter, r *http.Request, ws *websocket.Conn) 
 
       <section id="wishlist">
         <div class="page-header">
-          <h1>Wishlist</h1>
+          <h1>意愿表</h1>
         </div>
         <p>
-          There are some areas that could benefit from some TLC.
+          有一些东西可能会有用<br>
         </p>
         <ul>
-          <li> <b>ORM</b> -- Presently Revel is BYOORM (bring-your-own-ORM).  A
-            good ORM integration would make simple things simple.
+          <li> <b>ORM</b> -- 目前Revel是一个 BYOORM (bring-your-own-ORM).
+            整合一个好的ORM也许会让简单的事情更加简单
             (e.g. <a href="http://github.com/coopernurse/gorp">gorp</a>,
             <a href="https://github.com/eaigner/hood">hood</a>,
             <a href="https://github.com/coocood/qbs">qbs</a>,
@@ -527,10 +523,8 @@ func handleInternal(w http.ResponseWriter, r *http.Request, ws *websocket.Conn) 
             <a href="https://github.com/astaxie/beedb">beedb</a>,
             <a href="https://github.com/gosexy/db">gosexy</a>,
             <a href="https://github.com/jinzhu/gorm">gorm</a>)
-          <li> <b>Pluggable template loader</b> -- Presently only Go templates
-          are supported by Revel (although the developer could use their own
-          library independently).  Providing an interface that makes any
-          template language pluggable would be ideal.
+          <li> <b>插件式模板加载器</b> -- 目前Revel只支持Go模板（虽然开发者可以用他们自己的独立的库）。
+            最好能提供一个可以让任何一种模板语言插件化的接口。
         </ul>
       </section>
 
