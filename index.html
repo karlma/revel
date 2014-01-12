@@ -244,7 +244,7 @@ func (c Hotels) Save(hotel Hotel) revel.Result {
                 <li> <b>结果(Results).</b> 重定向利用了反向路由。在模块渲染时，你的数据可以通过本地变量访问。
               </ul>
 
-              这有一个例子：
+              这有个例子：
             </p>
           </div>
 
@@ -337,21 +337,18 @@ func (c Application) SaveUser(user models.User, verifyPassword string) revel.Res
           <div class="span6">
             <h2 id="interceptors">拦截器</h2>
             <p>
-              Interceptors are controller methods that are run before or after
-              requests, or in response to panics.  By embedding a controller
-              into another, a developer can share interceptors and fields across
-              many controllers.
+              拦截器是控制器的方法，在request之前或之后，或者在response的panic里。
+              通过将一个控制器嵌入到其它控制器的方法，开发者可以跨多个控制器共享拦截器和字段。
             </p>
-						<p>
-							As an example, the database module may be used to open a
-							connection on initialization, made available through a global
-							handle.  Additionally, embedding the <b>db.Transactional</b> type
-							adds a <b>sql.Txn</b> field plus interceptors that begin and commit
-							transactions (or rollback on panic).
-						</p>
-						<p>
-							Here's what the interceptor looks like (minus error handling):
-						</p>
+	    <p>
+              例如，数据库模块通常在初始化时打开数据库连接，通过一个全局handle使其可用。
+              另外，有一个用于嵌入的<b>db.Transactional</b>类型，这个类型中有一个<b>sql.Txn</b>字段，
+              并且有三个拦截器方法:begin（BEFORT）,commit（AFTER）,rollback（PANIC）。
+              译注：其它控制器可以通过嵌入这个db.Transactional类型而获得这三个拦截器。
+	    </p>
+	    <p>
+              下面是拦截器的样子（最小出错处理）：
+	    </p>
           </div>
 
           <div class="span12">
@@ -399,7 +396,7 @@ func init() {
 }</pre>
 
 						<p>
-							Here is how it can be mixed in to an application controller:
+                                                  下面是一个应用控制器如何混入(mix in)的例子：
 						</p>
 
             <pre class="prettyprint">
