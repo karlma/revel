@@ -1,5 +1,5 @@
 ---
-title: "Hello World"
+title: The "Hello World" app
 layout: tutorial
 ---
 
