@@ -1,16 +1,16 @@
 ---
-title: Introduction
+title: 介绍
 layout: manual
 ---
 
-This manual documents aspects of the Revel framework.
-- New to Revel?  [Read about the concepts](concepts.html).
-- Can't find what you're looking for?  [Search our mailing list (revel-framework@googlegroups.com)](https://groups.google.com/forum/#!forum/revel-framework)
-- Need help?  [Send an email to the revel-framework@googlegroups.com](mailto:revel-framework@googlegroups.com)
-- Find a bug?  [Open an issue on github.](https://github.com/robfig/revel/issues)
+此文档只关注Revel的框架部分。
+- Revel又有什么新东西啦?  [看一下这里就知道](concepts.html).
+- 找不到我想要的怎么办?  [在邮件列表里找一下看看 (revel-framework@googlegroups.com)](https://groups.google.com/forum/#!forum/revel-framework)
+- 需要帮助?  [发送email到： revel-framework@googlegroups.com](mailto:revel-framework@googlegroups.com)
+- 发现一个bug?  [到github里Open一个issue吧.](https://github.com/robfig/revel/issues)
 
-You may have noticed the **Improve this page** button at the top right of most documentation pages. Please note:
+你可能已经注意到了在文件的右上角有一个 **Improve this page** 按钮。注意:
 
-- You need to be logged into github to be able to edit the page or you will get a 404
-- You can also edit any other pages (such as front page) of revel, even though there is not button.
-Please see the branch `gh-pages` of the repository.
+- 如要你要编辑它的话，那你得先需要登录到github，否则你会得到一个404错误。
+- 你也可以编辑没有这个按钮的页面。
+请看github资源中的 `gh-pages` 分支。
