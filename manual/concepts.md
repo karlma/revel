@@ -3,7 +3,7 @@ title: 概念
 layout: manual
 ---
 
-Revel 是一个带电池的（batteries-included）（译注：应用是比较完备的意思）web框架，它学习了Rails和Play!框架的精神。
+Revel 是一个带电池的（batteries-included）（译注：应该是比较完备的意思）web框架，它学习了Rails和Play!框架的精神。
 很多相同的理念都被吸收进了这个框架的设计和接口中。
 
 使用Revel，你可以很容易的创建web应用。
