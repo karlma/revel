@@ -1,91 +1,72 @@
 ---
-title: Concepts
+title: 概念
 layout: manual
 ---
 
-Revel is a batteries-included web framework in the spirit of Rails or Play!
-Framework.  Many of the same (proven) ideas are incorporated in the framework
-design and interface.
+Revel 是一个　batteries-included （译注：应用是比较完备意思）web框架，它学习了Rails和Play!框架的精神。
+很多相同的理念都被吸收进了这个框架的设计和接口中。
 
-Revel makes it easy to build web applications using the Model-View-Controller
-(MVC) pattern by relying on conventions that require a certain structure in your
-application.  In return, it is very light on configuration and enables an
-extremely fast development cycle.
+使用Revel，你可以很容易的创建web应用。
+这是因为它采用“模型－视图－控制器”（MVC）模式，并且依赖于web应用程序中结构设计的惯例。
+从而，使得它在具有非常简单的配置的同时，大大的加速了开发周期。
 
 ## MVC
 
-Here is a quick summary:
+下面是一个简单的总结：
 
-- *Models* are the essential data objects that describe your application domain.
-   Models also contain domain-specific logic for querying and updating the data.
-- *Views* describe how data is presented and manipulated. In our case, this is
-   the template that is used to present data and controls to the user.
-- *Controllers* handle the request execution.  They perform the user's desired
-   action, they decide which View to display, and they prepare and provide the
-   necessary data to the View for rendering.
+- *Models* 是描述你的应用域实体数据对象。模型也包含特定域的查询和更新数据的逻辑和操作。
+- *Views* 描述如何展示和操纵数据。在我们这里，它就是一个向用户展示数据和让用户控制数据的模板。
+- *Controllers* 处理请求的执行。它们执行用户希望的动作，决定使用哪个View来完成显示，同时它们还为渲染View准备和提供必要的数据。
 
-There are many excellent overviews of MVC structure online.  In particular, the
-one provided by [Play! Framework](http://www.playframework.org) matches our model exactly.
+网上有许多优秀的关于MVC架构的文章。 尤其是 [Play! Framework](http://www.playframework.org)，它就是我们使用的模型。
 
-## Life of a Request
+## 一个请求的生命周期
 
-Here is an overview of the request processing framework.
+下面是请求处理框架的概览。
 
 ![Life of a Request](../img/RevelDesign.png)
 
-Concept summary:
+概念总结:
 
-* Revel exposes a single http.Handler, responsible for instantiating the
-  Controller (the context for the request) and passing the request along to the
-  Filter Chain.
-* Filters are links in a request processing chain. They may be composed to
-  implement horizontal concerns like request logging, cookie policies,
-  authorization, etc.  Most of the built-in functionality is implemented as
-  Filters.
-* Actions are the application-specific functions that process the input and
-  produce a Result.
+* Revel公开一个 http.Handler, 它负责实例化一个与请求上下文相关的控制器，同时将请求传送到过滤器链（Filter Chain）。
+* 过滤器们被串在一个请求处理链上。它们是由一些像请求日志，cookie策略，认证等的实现层组成的。
+  大部分内置的功能都是用过滤器实现的。
+* 动作(Actions)就是一些特定的应用功能，它们处理输入，并输出结果。
 
-## HTTP Handler
+## HTTP 处理器
 
-Revel builds on top of the Go HTTP server, which creates a go-routine
-(lightweight thread) to process each incoming request.  The implication is that
-your code is free to block, but it must handle concurrent request processing.
+Revel建构在Go HTTP server之上, 它会针对每一个进入的请求创建一个 go-routine
+(轻量级线程)。这样的实现可以让你的代码随意的阻塞，但是它必须处理并发的请求处理。
 
-The Revel handler does nothing except hand the request to the Filter chain for
-processing and, upon completion, apply the result to write the response.
+Revel处理器，除了把request扔到过滤器链中去处理，处理完成后，把结果写回到response中之外，它什么也不做。
 
-By default, the Revel handler will be registered on `"/"` to receive all
-incoming connections.  However, applications are free to override this behavior
--- for example, they may want to use existing http.Handlers rather than
-re-implementing them within the Revel framework.  See the [FAQ](faq.html) for
-more detail.
+Revel处理器默认被注册到 `"/"`，接收所有到达的连接。
+然而，应用程序可以自由的覆盖些行为。例如，它们可能会使用其它现成的http.Handler，甚至用Revel框架重新实现一个也不是不可以。
+详细情况请看 [FAQ](faq.html) 。
 
-## Filters
+## 过滤器
 
-[Filters](filters.html) implement most request processing functionality provided
-by Revel. They have a simple interface that allows them to be nested.
+[过滤器](filters.html) 实现了大部分的Revel提供的请求处理功能。
+它们有一个简单的interface，允许被嵌入。
 
-The "Filter Chain" is an array of functions, each one invoking the next, until
-the terminal filter stage invokes the action.  For example, one of the first
-Filters in the chain is the `RouterFilter`, which decides which Action the
-request is meant for and saves that to the Controller.
+"过滤器链" 就是一个函数数组, 每一个函数会调用下一个函数, 直到最后一个，它会调用action。
+举个例子，链中的第一个过滤器是 `RouterFilter`, 它来决定这个请求应该用哪个Action来处理，并将其保存在控制器中。
 
-Overall, Filters and the Filter Chain are the equivalent of Rack.
+总的说来，过滤器和过滤器链就相当于Rack。
 
-## Controllers and Actions
+## 控制器和动作
 
-Each HTTP request invokes an **action**, which handles the request and writes
-the response. Related **actions** are grouped into **controllers**.  The
-[Controller](../docs/godoc/controller.html#Controller) type contains relevant
-fields and methods and acts as the context for each request.
+每一个 HTTP 请求都会调用一个 **action**, 它来处理请求将写回应答。
+相关的 **actions** 被组织到 **controllers**里。
+[Controller](../docs/godoc/controller.html#Controller) 类型包含相关
+字段和方法，做为每一个请求的上下文。
 
-As part of handling a HTTP request, Revel instantiates an instance of your
-Controller, and it sets all of these properties on the embedded
-`revel.Controller`.  Revel does not share Controller instances between requests.
+做为HTTP请求处理的一部分，Revel实例化你的Controller实例，并且设置嵌入到你的Controller中的`revel.Controller`的所有属性。
+Revel不会在不同的请求之间共享Controller。
 
 ***
 
-A **Controller** is any type that embeds `*revel.Controller` (directly or indirectly).
+一个 **Controller** 就是直接或间接嵌入了 `*revel.Controller`类型的任何一个类型。
 {% raw %}
 <pre class="prettyprint lang-go">
 type AppController struct {
@@ -94,11 +75,11 @@ type AppController struct {
 </pre>
 {% endraw %}
 
-An **Action** is any method on a **Controller** that meets the following criteria:
-* is exported
-* returns a revel.Result
+一个 **Action** 就是 **Controller** 中符合下述标准的任何一个方法：
+* 是一个导出方法
+* 返回revel.Result类型
 
-For example:
+例如：
 {% raw %}
 <pre class="prettyprint lang-go">
 func (c AppController) ShowLogin(username string) revel.Result {
@@ -108,13 +89,13 @@ func (c AppController) ShowLogin(username string) revel.Result {
 </pre>
 {% endraw %}
 
-The example invokes `revel.Controller.Render` to execute a template, passing it the
-username as a parameter.  There are many methods on **revel.Controller** that
-produce **revel.Result**, but applications are also free to create their own.
+这个例子调用了 `revel.Controller.Render` 去执行一个模板, 同时将username参数传给它。
+**revel.Controller**中有很多方法可以产生 **revel.Result**,
+但是应用程序也可以自己创建。
 
-## Results
+## 结果(Results)
 
-A Result is anything conforming to the interface:
+一个 Result 是任何一个符合下面接口的东西：
 {% raw %}
 <pre class="prettyprint lang-go">
 type Result interface {
@@ -122,7 +103,5 @@ type Result interface {
 }
 </pre>
 {% endraw %}
-Typically, nothing is written to the response until the **action** and all
-filters have returned.  At that point, Revel writes response headers and cookies
-(e.g. setting the session cookie), and then invokes `Result.Apply` to write the
-actual response content.
+通常，**action**和所有的过滤器都已经返回后，才会写应答。
+此时，Revel写应答的头和cookie（如，设置session cookie）,接着，它调用 `Result.Apply`来写应答的实质性内容。
