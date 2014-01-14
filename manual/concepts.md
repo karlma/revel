@@ -3,7 +3,7 @@ title: 概念
 layout: manual
 ---
 
-Revel 是一个　batteries-included （译注：应用是比较完备意思）web框架，它学习了Rails和Play!框架的精神。
+Revel 是一个带电池的（batteries-included）（译注：应用是比较完备的意思）web框架，它学习了Rails和Play!框架的精神。
 很多相同的理念都被吸收进了这个框架的设计和接口中。
 
 使用Revel，你可以很容易的创建web应用。
@@ -104,4 +104,4 @@ type Result interface {
 </pre>
 {% endraw %}
 通常，**action**和所有的过滤器都已经返回后，才会写应答。
-此时，Revel写应答的头和cookie（如，设置session cookie）,接着，它调用 `Result.Apply`来写应答的实质性内容。
+此时，Revel先写应答的头和cookie（如，设置session cookie）,接着，它调用 `Result.Apply`来写应答的实质性内容。
